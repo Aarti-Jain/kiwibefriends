@@ -223,3 +223,28 @@ input {
     border-bottom: 1px solid $gray-lighter;
   }
 }
+
+/* Sign up */
+
+#sign-up-word {
+  font-size: 2.3em;
+}
+
+#sign-up-desc {
+  font-size: 1em;
+  color:grey;
+}
+
+#sign-up-line {
+  height:1px;
+  border-width:0;
+  color:lightgrey;
+  background-color:lightgrey
+}
+
+/* Log in */
+
+#login-row {
+  padding: 2em;
+  margin: 2em;
+}
