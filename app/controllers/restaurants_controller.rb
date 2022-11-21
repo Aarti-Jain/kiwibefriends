@@ -1,4 +1,5 @@
 class RestaurantsController < ApplicationController
+  before_action :logged_in_user, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   before_action :is_admin_user, only: [:new, :create, :edit, :update, :destroy]
 
   def index
@@ -7,6 +8,7 @@ class RestaurantsController < ApplicationController
   
   def show
     @restaurant = Restaurant.find(params[:id])
+    @microposts = @restaurant.microposts.paginate(page: params[:page])
   end
 
   def new
