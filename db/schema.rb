@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_21_045205) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_21_170154) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,6 +61,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_21_045205) do
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "restaurant_relationships", force: :cascade do |t|
+    t.integer "restaurant_follower_id"
+    t.integer "restaurant_followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_followed_id"], name: "index_restaurant_relationships_on_restaurant_followed_id"
+    t.index ["restaurant_follower_id", "restaurant_followed_id"], name: "add_index_rest_on_follower_and_followed", unique: true
+    t.index ["restaurant_follower_id"], name: "index_restaurant_relationships_on_restaurant_follower_id"
   end
 
   create_table "restaurants", force: :cascade do |t|

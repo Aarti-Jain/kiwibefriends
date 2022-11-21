@@ -42,3 +42,12 @@ following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
+# Create restaurant following relationships.
+users = User.all
+users.each do |curr_user|
+  restaurants_to_follow = Restaurant.order('RANDOM()').take(5)
+  restaurants_to_follow.each do |curr_restaurant|
+    curr_user.restaurant_follow(curr_restaurant)
+  end
+end
