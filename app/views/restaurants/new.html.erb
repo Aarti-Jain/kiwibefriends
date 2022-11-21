@@ -1,0 +1,18 @@
+<% provide(:title, "New Restaurant") %>
+<h1>New Restaurant</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: @restaurant, local: true) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :description %>
+      <%= f.text_field :description, class: 'form-control' %>
+
+      <%= f.submit "Create Restaurant", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

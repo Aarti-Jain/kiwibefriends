@@ -1,0 +1,15 @@
+# # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: pizza 1
+  description: MyText
+
+two:
+  name: pizza 2
+  description: MyText
+
+<% 30.times do |n| %>
+restaurant_<%= n %>:
+  name:  <%= "Restaurant-#{n}" %>
+  description: <%= "restaurant-#{n} description" %>
+<% end %>
