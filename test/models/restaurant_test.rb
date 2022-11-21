@@ -35,4 +35,12 @@ class RestaurantTest < ActiveSupport::TestCase
     @restaurant.save
     assert_not duplicate_restaurant.valid?
   end
+
+  test "restaurant associated microposts should be destroyed" do
+    @restaurant.save
+    @restaurant.microposts.create!(content: "Lorem ipsum", user_id:users(:michael).id)
+    assert_difference 'Micropost.count', -1 do
+      @restaurant.destroy
+    end
+  end
 end

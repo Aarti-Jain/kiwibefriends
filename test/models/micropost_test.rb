@@ -4,7 +4,9 @@ class MicropostTest < ActiveSupport::TestCase
 
   def setup
     @user = users(:michael)
-    @micropost = @user.microposts.build(content: "Lorem ipsum")
+    @restaurant = restaurants(:one)
+    @micropost = @user.microposts.build(content: "Lorem ipsum",
+                                        restaurant_id: @restaurant.id)
   end
 
   test "should be valid" do
@@ -18,6 +20,11 @@ class MicropostTest < ActiveSupport::TestCase
 
   test "content should be present" do
     @micropost.content = "   "
+    assert_not @micropost.valid?
+  end
+
+  test "restaurant id should be present" do
+    @micropost.restaurant_id = nil
     assert_not @micropost.valid?
   end
 
