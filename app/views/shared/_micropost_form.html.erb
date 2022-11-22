@@ -6,6 +6,9 @@
   <div class="field">
     <%= f.number_field :restaurant_id, placeholder: "Restaurant Id" %>
   </div>
+  <div class="field">
+    <%= f.number_field :rating, placeholder: "Rating" %>
+  </div>
   <%= f.submit "Post", class: "btn btn-primary" %>
   <span class="image">
     <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>

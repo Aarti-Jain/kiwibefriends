@@ -26,13 +26,18 @@ end
                      description: description[0...100])
 end
 
-# Generate microposts for a subset of users.
-users = User.order(:created_at).take(6)
-50.times do
-  content = Faker::Lorem.sentence(word_count: 5)
-  restaurant_id = Restaurant.order('RANDOM()').first.id
-  users.each { |user| user.microposts.create!(content: content, 
-                                              restaurant_id:restaurant_id) }
+# Generate microposts
+users = User.all
+users.each do |user|
+  restaurants_subset = Restaurant.order('RANDOM()').take(5)
+  restaurants_subset.each do |restaurant|
+    content = Faker::Lorem.sentence(word_count: Faker::Number.between(from: 10, to: 20))[0...200]
+    rating = Faker::Number.between(from: 1, to: 5)
+    restaurant_id = restaurant.id
+    user.microposts.create!(content: content, 
+                            restaurant_id:restaurant_id,
+                            rating: rating)
+  end
 end
 
 # Create following relationships.

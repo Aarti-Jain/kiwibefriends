@@ -6,10 +6,11 @@ class Micropost < ApplicationRecord
   end
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
-  validates :content, presence: true, length: { maximum: 140 }
+  validates :content, presence: true, length: { maximum: 200 }
   validates :image,   content_type: { in: %w[image/jpeg image/gif image/png],
                                       message: "must be a valid image format" },
                       size: { less_than: 5.megabytes,
                               message:   "should be less than 5MB" }
   validates :restaurant_id, presence: true
+  validates :rating, presence: true, inclusion: { in: (1..5) }
 end

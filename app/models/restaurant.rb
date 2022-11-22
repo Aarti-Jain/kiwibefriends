@@ -12,4 +12,8 @@ class Restaurant < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: false }
   validates :description, presence: true, length: { maximum: 255 }
+
+  def average_rating
+    Micropost.where(restaurant_id: id).average(:rating).to_i
+  end
 end
