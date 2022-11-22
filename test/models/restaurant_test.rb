@@ -38,9 +38,22 @@ class RestaurantTest < ActiveSupport::TestCase
 
   test "restaurant associated microposts should be destroyed" do
     @restaurant.save
-    @restaurant.microposts.create!(content: "Lorem ipsum", user_id:users(:michael).id)
+    @restaurant.microposts.create!(content: "Lorem ipsum", 
+                                   user_id:users(:michael).id,
+                                   rating: 1)
     assert_difference 'Micropost.count', -1 do
       @restaurant.destroy
     end
+  end
+
+  test "restaurant average rating" do
+    @restaurant.save
+    @restaurant.microposts.create!(content: "Lorem ipsum", 
+                                   user_id:users(:michael).id,
+                                   rating: 3)
+    @restaurant.microposts.create!(content: "Lorem ipsum", 
+                                   user_id:users(:michael).id,
+                                   rating: 2)
+    assert_equal 2, @restaurant.average_rating
   end
 end

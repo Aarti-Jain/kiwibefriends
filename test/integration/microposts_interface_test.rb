@@ -18,7 +18,8 @@ class MicropostsInterfaceTest < MicropostsInterface
   test "should show errors but not create micropost on invalid submission" do
     assert_no_difference 'Micropost.count' do
       post microposts_path, params: { micropost: { content: "",
-                                                   restaurant_id:nil } }
+                                                   restaurant_id:nil,
+                                                   rating: nil } }
     end
     assert_select 'div#error_explanation'
     assert_select 'a[href=?]', '/?page=2'  # Correct pagination link
@@ -28,7 +29,8 @@ class MicropostsInterfaceTest < MicropostsInterface
     content = "This micropost really ties the room together"
     assert_difference 'Micropost.count', 1 do
       post microposts_path, params: { micropost: { content: content,
-                                                   restaurant_id:restaurants(:one).id } }
+                                                   restaurant_id:restaurants(:one).id,
+                                                   rating: 1 } }
     end
     assert_redirected_to root_url
     follow_redirect!

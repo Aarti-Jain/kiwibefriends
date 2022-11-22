@@ -49,7 +49,10 @@ class User < ApplicationRecord
   def feed
     following_ids = "SELECT followed_id FROM relationships
                      WHERE  follower_id = :user_id"
+    restaurant_followed_ids = "SELECT restaurant_followed_id from restaurant_relationships
+                                WHERE restaurant_follower_id = :user_id"
     Micropost.where("user_id IN (#{following_ids})
+                     OR restaurant_id IN (#{restaurant_followed_ids})
                      OR user_id = :user_id", user_id: id)
              .includes(:user, image_attachment: :blob)
   end
