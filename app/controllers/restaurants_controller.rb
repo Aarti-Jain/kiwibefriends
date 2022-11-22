@@ -4,7 +4,12 @@ class RestaurantsController < ApplicationController
   before_action :is_admin_user, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @restaurants = Restaurant.paginate(page: params[:page])
+    if params[:query].present?
+      @restaurants = Restaurant.where("name LIKE ?", "%#{params[:query]}%")
+                               .paginate(page: params[:page])
+    else
+      @restaurants = Restaurant.paginate(page: params[:page])
+    end
   end
   
   def show
