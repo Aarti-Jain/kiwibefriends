@@ -7,8 +7,12 @@
         <%= @restaurant.name %>
       </h1>
     </section>
+    <section class="stats">
+      <%= render 'shared/restaurant_stats' %>
+    </section>
   </aside>
   <div class="col-md-8">
+  <%= render 'follow_form' if logged_in? %>
   <% if @restaurant.microposts.any? %>
     <h3>Microposts (<%= @restaurant.microposts.count %>)</h3>
     <ol class="microposts">

@@ -1,0 +1,2 @@
+module RestaurantRelationshipsHelper
+end

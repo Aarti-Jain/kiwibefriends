@@ -1,14 +1,32 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
 
-  has_many :active_relationships, class_name:  "Relationship",
-                                  foreign_key: "follower_id",
-                                  dependent:   :destroy
-  has_many :passive_relationships, class_name:  "Relationship",
-                                   foreign_key: "followed_id",
-                                   dependent:   :destroy
-  has_many :following, through: :active_relationships, source: :followed
-  has_many :followers, through: :passive_relationships, source: :follower
+  has_many :active_relationships,
+            class_name:  "Relationship",
+            foreign_key: "follower_id",
+            dependent:   :destroy
+
+  has_many :passive_relationships,
+            class_name:  "Relationship",
+            foreign_key: "followed_id",
+            dependent:   :destroy
+
+  has_many :active_restaurant_relationships,
+            class_name:  "RestaurantRelationship",
+            foreign_key: "restaurant_follower_id",
+            dependent:   :destroy
+
+  has_many :following, through:
+           :active_relationships,
+            source: :followed
+
+  has_many :followers,
+            through: :passive_relationships,
+            source: :follower
+
+  has_many :restaurant_following,
+            through: :active_restaurant_relationships, 
+            source: :restaurant_followed
 
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
@@ -35,7 +53,7 @@ class User < ApplicationRecord
                      OR user_id = :user_id", user_id: id)
              .includes(:user, image_attachment: :blob)
   end
-  
+
   def self.new_token
     SecureRandom.urlsafe_base64
   end
@@ -63,6 +81,7 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
 
+  # Relationship
   # Follows a user.
   def follow(other_user)
     following << other_user unless self == other_user
@@ -76,5 +95,21 @@ class User < ApplicationRecord
   # Returns true if the current user is following the other user.
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  # RestaurantRelationship
+  # Follows a restaurant.
+  def restaurant_follow(other_restaurant)
+    restaurant_following << other_restaurant
+  end
+
+  # Unfollows a restaurant.
+  def restaurant_unfollow(other_restaurant)
+    restaurant_following.delete(other_restaurant)
+  end
+
+  # Returns true if the current user is following the other user.
+  def restaurant_following?(other_restaurant)
+    restaurant_following.include?(other_restaurant)
   end
 end

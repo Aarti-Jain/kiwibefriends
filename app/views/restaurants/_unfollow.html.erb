@@ -1,0 +1,4 @@
+<%= form_with(model: current_user.active_restaurant_relationships.find_by(restaurant_followed: @restaurant),
+              html: { method: :delete }) do |f| %>
+  <%= f.submit "Unfollow", class: "btn" %>
+<% end %>

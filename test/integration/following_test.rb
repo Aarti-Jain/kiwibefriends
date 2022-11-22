@@ -4,6 +4,8 @@ class Following < ActionDispatch::IntegrationTest
 
   def setup
     @user  = users(:michael)
+    @user.restaurant_follow(restaurants(:one))
+    @user.restaurant_follow(restaurants(:two))
     @other = users(:archer)
     log_in_as(@user)
   end
@@ -30,6 +32,16 @@ class FollowPagesTest < Following
       assert_select "a[href=?]", user_path(user)
     end
   end
+
+  test "restaurants following page" do
+    get restaurant_following_user_path(@user)
+    assert_response :unprocessable_entity
+    assert_not @user.restaurant_following.empty?
+    assert_match @user.restaurant_following.count.to_s, response.body
+    @user.restaurant_following.each do |restaurant|
+      assert_select "a[href=?]", restaurant_path(restaurant)
+    end
+  end 
 end
 
 class FollowTest < Following
