@@ -4,7 +4,7 @@
     <%= f.text_area :content, placeholder: "Compose new micropost..." %>
   </div>
   <div class="field">
-    <%= f.number_field :restaurant_id, placeholder: "Restaurant Id" %>
+    <%= collection_select(:micropost, :restaurant_id, Restaurant.all, :id, :name) %>
   </div>
   <div class="field">
     <%= f.number_field :rating, placeholder: "Rating" %>
