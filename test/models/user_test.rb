@@ -103,6 +103,7 @@ class UserTest < ActiveSupport::TestCase
     michael = users(:michael)
     archer  = users(:archer)
     lana    = users(:lana)
+
     # Posts from followed user
     lana.microposts.each do |post_following|
       assert michael.feed.include?(post_following)
@@ -114,6 +115,24 @@ class UserTest < ActiveSupport::TestCase
     # Posts from non-followed user
     archer.microposts.each do |post_unfollowed|
       assert_not michael.feed.include?(post_unfollowed)
+    end
+  end
+
+  test "feed should have the right posts from followed restaurants" do
+    user_3 = users(:user_3)
+    user_3.unfollow(user_3.following) # remove all michael's followings
+    restaurant = restaurants(:two)
+
+    # Posts from followed restaurant
+    user_3.restaurant_follow(restaurant)
+    restaurant.microposts.each do |restaurant_post_following|
+      assert user_3.feed.include?(restaurant_post_following)
+    end
+
+    # Posts from unfollowed restaurants
+    user_3.restaurant_unfollow(restaurant)
+    restaurant.microposts.each do |restaurant_post_unfollowed|
+      assert_not user_3.feed.include?(restaurant_post_unfollowed)
     end
   end
 end
