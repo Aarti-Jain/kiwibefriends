@@ -1,0 +1,6 @@
+<%= turbo_stream.update "follow_form" do %>
+  <%= render partial: "restaurants/follow" %>
+<% end %>
+<%= turbo_stream.update "restaurant_followers" do %>
+  <%= @restaurant.restaurant_followers.count %>
+<% end %>

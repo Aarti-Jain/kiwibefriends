@@ -27,4 +27,9 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to root_url
   end
+
+  test "should redirect restaurant followers when not logged in" do
+    get restaurant_followers_restaurant_path(@restaurant)
+    assert_redirected_to login_url
+  end
 end

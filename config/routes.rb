@@ -12,12 +12,16 @@ Rails.application.routes.draw do
   delete "/logout",  to: "sessions#destroy"
   resources :users do
     member do
-      get :following, :followers
+      get :following, :followers, :restaurant_following
     end
   end
-  resources :users
-  resources :restaurants
-  resources :microposts,          only: [:create, :destroy]
-  resources :relationships,       only: [:create, :destroy]
+  resources :restaurants do
+    member do
+      get :restaurant_followers
+    end
+  end
+  resources :microposts,                only: [:create, :destroy]
+  resources :relationships,             only: [:create, :destroy]
+  resources :restaurant_relationships,  only: [:create, :destroy]
   get '/microposts', to: 'static_pages#home'
 end

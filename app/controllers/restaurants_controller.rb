@@ -1,5 +1,6 @@
 class RestaurantsController < ApplicationController
-  before_action :logged_in_user, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:index, :show, :new, :create, 
+                                        :edit, :update, :destroy, :restaurant_followers]
   before_action :is_admin_user, only: [:new, :create, :edit, :update, :destroy]
 
   def index
@@ -43,6 +44,13 @@ class RestaurantsController < ApplicationController
     Restaurant.find(params[:id]).destroy
     flash[:success] = "Restaurant deleted"
     redirect_to restaurants_url
+  end
+
+  def restaurant_followers
+    @title = "Restaurant Followers"
+    @restaurant = Restaurant.find(params[:id])
+    @users = @restaurant.restaurant_followers.paginate(page: params[:page])
+    render 'show_follow', status: :unprocessable_entity
   end
 
   private

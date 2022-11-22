@@ -11,18 +11,18 @@ class User < ApplicationRecord
             foreign_key: "followed_id",
             dependent:   :destroy
 
+  has_many :active_restaurant_relationships,
+            class_name:  "RestaurantRelationship",
+            foreign_key: "restaurant_follower_id",
+            dependent:   :destroy
+
   has_many :following, through:
            :active_relationships,
             source: :followed
 
-  has_many :followers, 
+  has_many :followers,
             through: :passive_relationships,
             source: :follower
-
-  has_many :active_restaurant_relationships,
-           class_name:  "RestaurantRelationship",
-           foreign_key: "restaurant_follower_id",
-           dependent:   :destroy
 
   has_many :restaurant_following,
             through: :active_restaurant_relationships, 

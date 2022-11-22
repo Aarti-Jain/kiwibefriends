@@ -1,1 +1,3 @@
-# empty
+rel_one:
+  restaurant_follower: user_15
+  restaurant_followed: restaurant_15

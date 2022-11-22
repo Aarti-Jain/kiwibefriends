@@ -12,4 +12,10 @@
     </strong>
     followers
   </a>
+  <a href="<%= restaurant_following_user_path(@user) %>">
+    <strong id="restaurant_following" class="stat">
+      <%= @user.restaurant_following.count %>
+    </strong>
+    restaurants
+  </a>
 </div>

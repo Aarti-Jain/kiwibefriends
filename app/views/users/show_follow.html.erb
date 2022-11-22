@@ -9,10 +9,16 @@
     </section>
     <section class="stats">
       <%= render 'shared/stats' %>
-      <% if @users.any? %>
+      <% if !@users.nil? && @users.any? %>
         <div class="user_avatars">
           <% @users.each do |user| %>
             <%= link_to gravatar_for(user, size: 30), user %>
+          <% end %>
+        </div>
+      <% elsif !@restaurants.nil? && @restaurants.any? %>
+        <div class="user_avatars">
+          <% @restaurants.each do |restaurant| %>
+            <%= link_to gravatar_for_restaurant(restaurant, size: 30), restaurant %>
           <% end %>
         </div>
       <% end %>
@@ -20,11 +26,16 @@
   </aside>
   <div class="col-md-8">
     <h3><%= @title %></h3>
-    <% if @users.any? %>
+    <% if !@users.nil? && @users.any? %>
       <ul class="users follow">
         <%= render @users %>
       </ul>
       <%= will_paginate %>
+    <% elsif !@restaurants.nil? && @restaurants.any? %>
+      <ul class="users follow">
+        <%= render @restaurants %>
+      </ul>
+      <%= will_paginate @restaurants %>
     <% end %>
   </div>
 </div>
