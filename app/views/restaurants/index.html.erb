@@ -1,6 +1,12 @@
 <% provide(:title, 'All Restaurants') %>
 <h1>All Restaurants</h1>
 
+<%= form_with(url: restaurants_path, method: "GET") do |form| %>
+  <%= form.label :query, "Search by name:" %>
+  <%= form.text_field :query %>
+  <%= form.submit 'Search', name: nil %>
+<% end %>
+
 <%= will_paginate %>
 
 <ul class="users">
