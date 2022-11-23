@@ -138,7 +138,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "user should like and unlike a micrpost" do
-    user1 = users(:michael)
+    user1 = users(:archer)
     post1 = microposts(:orange)
     assert_not user1.liking?(post1)
     user1.like(post1)
