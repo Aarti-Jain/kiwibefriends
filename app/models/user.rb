@@ -2,31 +2,40 @@ class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
 
   has_many :active_relationships,
-            class_name:  "Relationship",
-            foreign_key: "follower_id",
-            dependent:   :destroy
+           class_name:  "Relationship",
+           foreign_key: "follower_id",
+           dependent:   :destroy
 
   has_many :passive_relationships,
-            class_name:  "Relationship",
-            foreign_key: "followed_id",
-            dependent:   :destroy
+           class_name:  "Relationship",
+           foreign_key: "followed_id",
+           dependent:   :destroy
 
   has_many :active_restaurant_relationships,
-            class_name:  "RestaurantRelationship",
-            foreign_key: "restaurant_follower_id",
-            dependent:   :destroy
+           class_name: "RestaurantRelationship",
+           foreign_key: "restaurant_follower_id",
+           dependent: :destroy
 
-  has_many :following, through:
-           :active_relationships,
-            source: :followed
+  has_many :following,
+           through: :active_relationships,
+           source: :followed
 
   has_many :followers,
-            through: :passive_relationships,
-            source: :follower
+           through: :passive_relationships,
+           source: :follower
 
   has_many :restaurant_following,
-            through: :active_restaurant_relationships, 
-            source: :restaurant_followed
+           through: :active_restaurant_relationships, 
+           source: :restaurant_followed
+
+  has_many :active_likes,
+           class_name: "Like",
+           foreign_key: "liker_id",
+           dependent: :destroy
+
+  has_many :liking,
+           through: :active_likes,
+           source: :liked
 
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
@@ -114,5 +123,20 @@ class User < ApplicationRecord
   # Returns true if the current user is following the other user.
   def restaurant_following?(other_restaurant)
     restaurant_following.include?(other_restaurant)
+  end
+
+  # Likes a micropost
+  def like(other_micropost)
+    liking << other_micropost
+  end
+
+  # Unlikes a micropost
+  def unlike(other_micropost)
+    liking.delete(other_micropost)
+  end
+
+  # Returns true if the current user is liked the other micropost
+  def liking?(other_micropost)
+    liking.include?(other_micropost)
   end
 end

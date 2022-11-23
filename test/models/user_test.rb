@@ -136,4 +136,15 @@ class UserTest < ActiveSupport::TestCase
       assert_not user_3.feed.include?(restaurant_post_unfollowed)
     end
   end
+
+  test "user should like and unlike a micrpost" do
+    user1 = users(:michael)
+    post1 = microposts(:orange)
+    assert_not user1.liking?(post1)
+    user1.like(post1)
+    assert user1.liking?(post1)
+    assert post1.likers.include?(user1)
+    user1.unlike(post1)
+    assert_not user1.liking?(post1)
+  end
 end

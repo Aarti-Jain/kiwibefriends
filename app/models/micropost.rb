@@ -1,4 +1,13 @@
 class Micropost < ApplicationRecord
+  has_many :passive_likes,
+           class_name: "Like",
+           foreign_key: "liked_id",
+           dependent: :destroy
+
+  has_many :likers,
+           through: :passive_likes,
+           source: :liker
+
   belongs_to :user
   belongs_to :restaurant
   has_one_attached :image do |attachable|
