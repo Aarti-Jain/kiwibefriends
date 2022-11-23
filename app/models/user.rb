@@ -25,7 +25,7 @@ class User < ApplicationRecord
            source: :follower
 
   has_many :restaurant_following,
-           through: :active_restaurant_relationships, 
+           through: :active_restaurant_relationships,
            source: :restaurant_followed
 
   has_many :active_likes,

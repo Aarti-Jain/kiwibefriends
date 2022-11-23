@@ -58,10 +58,8 @@ users.each do |curr_user|
 end
 
 # Create restaurant following relationships.
-users = User.all
-users.each do |curr_user|
-  microposts_to_like = Micropost.order('RANDOM()').take(10)
-  microposts_to_like.each do |curr_micropost|
-    curr_user.like(curr_micropost)
+Micropost.all.each do |micropost|
+  User.order('RANDOM()').take(Faker::Number.between(from: 30, to: 50)).each do |curr_user|
+    curr_user.like(micropost)
   end
 end
