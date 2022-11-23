@@ -32,4 +32,15 @@ class RestaurantsControllerTest < ActionDispatch::IntegrationTest
     get restaurant_followers_restaurant_path(@restaurant)
     assert_redirected_to login_url
   end
+
+  test "normal user should not get leaderboard" do
+    get leaderboard_path
+    assert_redirected_to login_url
+  end
+
+  test "admin user should get leaderboard" do
+    log_in_as(@normal_user)
+    get leaderboard_path
+    assert_template 'restaurants/leaderboard'
+  end
 end

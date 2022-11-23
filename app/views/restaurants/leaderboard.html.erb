@@ -1,0 +1,48 @@
+<% provide(:title, 'Leaderboard') %>
+<h1>Leaderboard</h1>
+
+<div>
+  <%= form_with(url: leaderboard_path, method: "GET") do |form| %>
+    <%= form.label :query, "Top Restaurants" %>
+    <%= select(:query, :sort_by, [['Now'       , 1], 
+                                  ['This Week' , 2],
+                                  ['This Month', 3],
+                                  ['This Year' , 4]]) %>
+    <%= form.submit 'Search' %>
+  <% end %>
+</div>
+
+<% i = 1 %>
+<%= will_paginate %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Rank</th>
+      <th scope="col">Restaurant</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Followers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @restaurants.each do |rest| %>
+    <% restaurant = Restaurant.find_by id: rest.id %>
+    <tr>
+      <th scope="row"><%= i %></th>
+      <td>
+        <%= gravatar_for_restaurant restaurant, size: 50 %>
+        <%= link_to restaurant.name, restaurant %>
+      </td>
+      <td>
+        <%= restaurant.average_rating %>
+      </td>
+      <td>
+        <%= restaurant.restaurant_followers.count %>
+      </td>
+      <% i += 1 %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate %>
