@@ -56,3 +56,12 @@ users.each do |curr_user|
     curr_user.restaurant_follow(curr_restaurant)
   end
 end
+
+# Create restaurant following relationships.
+users = User.all
+users.each do |curr_user|
+  microposts_to_like = Micropost.order('RANDOM()').take(10)
+  microposts_to_like.each do |curr_micropost|
+    curr_user.like(curr_micropost)
+  end
+end
