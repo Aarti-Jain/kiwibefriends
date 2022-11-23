@@ -16,7 +16,7 @@ gem "bootstrap-will_paginate", "1.0.0"
 gem "sprockets-rails"
 
 # Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
+gem "pg",         "1.3.5"
 
 gem "bootstrap-sass",  "3.4.1"
 
@@ -79,4 +79,9 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+end
+
+group :production do
+  gem "pg",         "1.3.5"
+  gem "aws-sdk-s3", "1.114.0", require: false
 end
