@@ -54,6 +54,6 @@ class RestaurantTest < ActiveSupport::TestCase
     @restaurant.microposts.create!(content: "Lorem ipsum", 
                                    user_id:users(:michael).id,
                                    rating: 2)
-    assert_equal 2, @restaurant.average_rating
+    assert_equal 2.5, @restaurant.average_rating
   end
 end

@@ -14,6 +14,11 @@ class Restaurant < ApplicationRecord
   validates :description, presence: true, length: { maximum: 255 }
 
   def average_rating
-    Micropost.where(restaurant_id: id).average(:rating).to_i
+    average = Micropost.where(restaurant_id: id).average(:rating)
+    if average.nil?
+      1
+    else
+      average.round(1)
+    end
   end
 end
