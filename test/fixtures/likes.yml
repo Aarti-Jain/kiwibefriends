@@ -1,0 +1,18 @@
+one:
+  liker: michael
+  liked: orange
+two:
+  liker: user_1
+  liked: micropost_1
+three:
+  liker: user_2
+  liked: micropost_2
+four:
+  liker: user_3
+  liked: micropost_3
+five:
+  liker: user_4
+  liked: micropost_4
+six:
+  liker: user_5
+  liked: micropost_5
