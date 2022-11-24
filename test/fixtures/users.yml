@@ -25,3 +25,8 @@ user_<%= n %>:
   email: <%= "user-#{n}@example.com" %>
   password_digest: <%= User.digest('password') %>
 <% end %>
+
+new_user:
+  name: new
+  email: new@example.com
+  password_digest: <%= User.digest('password') %>
