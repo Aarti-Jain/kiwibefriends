@@ -11,6 +11,6 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     log_in_as(users(:michael))
     get root_path
     assert_response :success
-    assert_select "title", "Ruby on Rails Tutorial Sample App"
+    assert_select "title", "Kiwi Be Friends"
   end
 end
