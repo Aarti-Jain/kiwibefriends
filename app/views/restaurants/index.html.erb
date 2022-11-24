@@ -10,16 +10,7 @@
 <%= will_paginate %>
 
 <ul class="users">
-  <% @restaurants.each do |restaurant| %>
-    <li>
-      <%= gravatar_for_restaurant restaurant, size: 50 %>
-      <%= link_to restaurant.name, restaurant %>
-      <% if current_user.admin? %>
-        | <%= link_to "delete", restaurant, method: :delete,
-                                      data: { confirm: "You sure?" } %>
-      <% end %>
-    </li>
-  <% end %>
+  <%= render @restaurants %>
 </ul>
 
 <%= will_paginate %>
