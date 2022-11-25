@@ -52,20 +52,12 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_equal name,  @user.name
     assert_equal email, @user.email
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 end
+
+# class ImageUploadTest < UsersEditTest
+#   test "edit user should have a file input field for images" do
+#     get edit_user_path(@user.id)
+#     assert_template 'users/edit'
+#     assert_select 'input[type=FILL_IN]'
+#   end
+# end
