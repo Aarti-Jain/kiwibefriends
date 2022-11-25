@@ -38,6 +38,7 @@ class RestaurantsController < ApplicationController
 
   def update
     @restaurant = Restaurant.find(params[:id])
+    @restaurant.image.attach(params[:restaurant][:image])
     if @restaurant.update(restaurant_params)
       flash[:success] = 'Restaurant updated'
       redirect_to @restaurant
