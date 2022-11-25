@@ -8,43 +8,49 @@ User.create!(name:  "admin",
              admin: true)
 
 # Generate a bunch of additional Users.
-30.times do |n|
+(1..20).each do |i|
   name  = Faker::Name.name
-  email = "user-#{n+1}@gmail.com"
+  email = "user-#{i+1}@gmail.com"
   password = "password"
   new_user = User.create!(name:  name,
                           email: email,
                           password: password,
                           password_confirmation: password)
-  # new_user.image.attach(
-  #   io:  File.open(File.join(Rails.root,'app/assets/images/photo.jpg')),
-  #   filename: 'photo.jpg'
-  # )
+  new_user.image.attach(
+    io:  File.open(File.join(Rails.root,"app/assets/images/users/#{i}.jpg")),
+    filename: "#{i}.jpg"
+  )
 end
 
 # Generate a bunch of Restaurants
-30.times do
+(1..26).each do |i|
   name = Faker::Restaurant.unique.name
   description = Faker::Restaurant.description
   new_restaurant = Restaurant.create!(name: name,
                                       description: description[0...220])
-  # new_restaurant.image.attach(
-  #   io:  File.open(File.join(Rails.root,'app/assets/images/photo.jpg')),
-  #   filename: 'photo.jpg'
-  # )
+  new_restaurant.image.attach(
+    io:  File.open(File.join(Rails.root,"app/assets/images/restaurants/#{i}.jpg")),
+    filename: "#{i}.jpg"
+  )
 end
 
 # Generate microposts
 users = User.all
+i = 1
 users.each do |user|
   restaurants_subset = Restaurant.order('RANDOM()').take(3)
   restaurants_subset.each do |restaurant|
     content = Faker::Restaurant.review[0...200]
     rating = Faker::Number.between(from: 1, to: 5)
     restaurant_id = restaurant.id
-    user.microposts.create!(content: content,
-                            restaurant_id: restaurant_id,
-                            rating: rating)
+    new_micropost = user.microposts.create!(content: content,
+                                            restaurant_id: restaurant_id,
+                                            rating: rating)
+    new_micropost.image.attach(
+      io:  File.open(File.join(Rails.root,"app/assets/images/food/#{i % 28 + 1}.jpg")),
+      filename: "#{i % 28}.jpg"
+    )
+    i += 1
   end
 end
 
