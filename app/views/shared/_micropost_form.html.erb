@@ -1,16 +1,18 @@
+<p>What's on your mind?</p>
+<hr>
 <%= form_with(model: @micropost) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.text_area :content, placeholder: "Compose new micropost..." %>
-  </div>
   <div class="field">
     <%= collection_select(:micropost, :restaurant_id, Restaurant.all, :id, :name) %>
   </div>
   <div class="field">
     <%= f.select :rating, options_for_select(1..5) %>
   </div>
-  <%= f.submit "Post", class: "btn btn-primary" %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "I've been coming to this restaurant for 3 years now and I always loved..." %>
+  </div>
   <span class="image">
     <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
   </span>
+  <%= f.submit "Post Review", class: "btn btn-primary" %>
 <% end %>
