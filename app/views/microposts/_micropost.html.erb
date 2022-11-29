@@ -1,26 +1,42 @@
 <li id="micropost-<%= micropost.id %>">
   <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
-  <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
-  <span class="user"><%= micropost.rating %> Rating</span>
-  <span class="content">
-    <b><%= link_to micropost.restaurant.name, micropost.restaurant %></b>:
-    <%= micropost.content %>
-    <% if micropost.image.attached? %>
-      <%= image_tag micropost.image.variant(:display) %>
-    <% end %>
+
+  <span class="user">
+    <%= link_to micropost.user.name, micropost.user %>
+    Reviewed
+    <%= link_to micropost.restaurant.name, micropost.restaurant %>
   </span>
+  
   <span class="timestamp">
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
+  </span>
 
+  <span class="rating">
+  <% micropost.rating.times do %>
+    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+  <% end %>
+  <% (5 - micropost.rating).times do %>
+    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+  <% end %>
+  </span>
+
+  <span class="content">
+    <%= micropost.content %>
+    <% if micropost.image.attached? %>
+    <%= image_tag micropost.image %>
+    <% end %>
+  </span>
+
+  <span class="like-unlike">
     <%# Number of likes %>
     <%= render :partial => 'shared/likes_stats', :locals => {:micropost => micropost} %>
 
     <%# option to like or unlike this micropost %>
     <%= render :partial => 'microposts/like_form', :locals => {:micropost => micropost} if logged_in? %>
-
-    <% if current_user?(micropost.user) %>
-      <%= link_to "delete", micropost, data: { "turbo-method": :delete,
-                                               turbo_confirm: "You sure?" } %>
-    <% end %>
   </span>
+  
+  <% if current_user?(micropost.user) %>
+    <%= link_to "delete", micropost, data: { "turbo-method": :delete,
+                                              turbo_confirm: "You sure?" } %>
+  <% end %>
 </li>
