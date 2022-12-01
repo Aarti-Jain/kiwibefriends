@@ -1,5 +1,5 @@
 current directory: /Users/aartijain/Desktop/kiwibefriends/vendor/bundle/ruby/3.1.0/gems/sassc-2.4.0/ext
-/Users/aartijain/.rbenv/versions/3.1.2/bin/ruby -I /Users/aartijain/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20221102-91597-maxojp.rb extconf.rb
+/Users/aartijain/.rbenv/versions/3.1.2/bin/ruby -I /Users/aartijain/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20221130-4868-832e02.rb extconf.rb
 creating Makefile
 
 current directory: /Users/aartijain/Desktop/kiwibefriends/vendor/bundle/ruby/3.1.0/gems/sassc-2.4.0/ext
@@ -77,4 +77,4 @@ linking shared-object sassc/libsass.bundle
 
 current directory: /Users/aartijain/Desktop/kiwibefriends/vendor/bundle/ruby/3.1.0/gems/sassc-2.4.0/ext
 make DESTDIR\= install
-/usr/bin/install -c -m 0755 libsass.bundle ./.gem.20221102-91597-gbm9b9/sassc
+/usr/bin/install -c -m 0755 libsass.bundle ./.gem.20221130-4868-lvnp0z/sassc
