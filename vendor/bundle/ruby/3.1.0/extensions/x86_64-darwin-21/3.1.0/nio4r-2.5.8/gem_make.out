@@ -1,5 +1,5 @@
 current directory: /Users/aartijain/Desktop/kiwibefriends/vendor/bundle/ruby/3.1.0/gems/nio4r-2.5.8/ext/nio4r
-/Users/aartijain/.rbenv/versions/3.1.2/bin/ruby -I /Users/aartijain/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20221102-91597-xjt2sf.rb extconf.rb
+/Users/aartijain/.rbenv/versions/3.1.2/bin/ruby -I /Users/aartijain/.rbenv/versions/3.1.2/lib/ruby/3.1.0 -r ./siteconf20221130-4868-quu0zp.rb extconf.rb
 checking for unistd.h... yes
 checking for linux/aio_abi.h... no
 checking for linux/io_uring.h... no
@@ -296,4 +296,4 @@ linking shared-object nio4r_ext.bundle
 
 current directory: /Users/aartijain/Desktop/kiwibefriends/vendor/bundle/ruby/3.1.0/gems/nio4r-2.5.8/ext/nio4r
 make DESTDIR\= install
-/usr/bin/install -c -m 0755 nio4r_ext.bundle ./.gem.20221102-91597-o64oww
+/usr/bin/install -c -m 0755 nio4r_ext.bundle ./.gem.20221130-4868-8iwo9a
