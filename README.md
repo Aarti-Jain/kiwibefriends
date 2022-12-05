@@ -1,74 +1,137 @@
 # [Kiwi Be Friends](https://kiwi-be-friends-cosi166.herokuapp.com/)
+
 A social networking website that allows users to rate, review and share restaurants with their friends!
+
 Available @ https://kiwi-be-friends-cosi166.herokuapp.com/
+
 ## Team 5
 - [Mahmoud Salah](https://www.github.com/MahmoudSalah02)
 - [Aari Jain](https://www.github.com/Aarti-Jain)
 - [Brian Liao](https://www.github.com/bliaowey)
 - [Zixin Zhang](https://www.github.com/GodDamnGitHub)
+
 ## Features
-- Secure Login :ballot_box_with_check:
+- Secure Login/Sign up :ballot_box_with_check:
+- Home Feed with relevant reviews :ballot_box_with_check:
+- Like/Post Restaurant reviews :ballot_box_with_check:
+- Follow other Users/Restaurants :ballot_box_with_check:
+- Leaderboard of Restaurants by Rating :ballot_box_with_check:
+- Search Functioanlity for Users/Restaurants :ballot_box_with_check:
+- Real-Time Notification system
+- Contact Us form
+
+
 ## Roadmap
-- Networking Element
-- Content Sharing Method
-- Messaging System
-- Real-Time Notifications
-- Search for posts/users/groups
-- Create/Join Groups
+- Create/Join User groups
+- ML algorithim for relevant Posts
+- Mobile App 
+
 ## Routes
-#### Root
-```http
-  GET /
+
+#### `Login`
+- ##### Landing pages for the website where Users can login
 ```
-Landing page where users login in
-#### Sign up
-```http
+  GET /login
+```
+
+#### `Sign up`
+- ##### Sign up page where users create an account
+```
   GET /signup
 ```
-Sign up page where users create an account
-#### User
-```http
-  GET /User/user_id
+
+#### `Home Feed`
+- ##### Shows the home feed for the logged in User
 ```
-User profile page
-#### Restaurant
-```http
-  GET /Restaurant/restaurant_id
+  GET /
 ```
-Restaurant page
-#### Group
-```http
-  GET /Group/group_id
+
+#### `User`
+
+- ##### Searchable list of all Users
 ```
-Group page
+  GET /users
+```
+
+- ##### User profile page
+```
+  GET /users/user_id
+```
+
+- ##### User edit profile form
+```
+  GET /users/user_id/edit
+```
+
+#### `Restaurant`
+
+- ##### Searchable list of all Restaurants
+```
+  GET /restaurants
+```
+
+- ##### Show the profile page of Restaurant with restuarant_id
+```
+  GET /restaurants/restuarant_id
+```
+
+- ##### Edit the profile page of Restaurant with restuarant_id (Admin only)
+```
+  GET /restaurants/restuarant_id/edit
+```
+
+- ##### Create a new Restaurant (Admin only)
+```
+  GET /restaurants/new
+```
+
+#### `Leaderboard`
+- ##### Show the leaderboard page of Restaurants
+```
+  GET /leaderboard
+```
+
+
 ## APIs
-- Maps Embed API
+- [Google Maps Places API](https://developers.google.com/maps/documentation/places/web-service/overview)
+- [Google Maps Photos API](https://developers.google.com/maps/documentation/places/web-service/photos)
+- [Yelp Fusion API](https://docs.developer.yelp.com/docs/fusion-intro)
+
+
 ## Gems
-- Faker :ballot_box_with_check:
-- image_processing
+- bcrypt
+- faker 
+- bootstrap-sass
 - aws-sdk-s3
+- turbo-rails
+- image_processing
+- active_storage_validations
+
 ## Prototype
-Designed via Balsamiq @ [Paper Prototype and UX flows](https://example.com)
+
+Paper Prototype and UX flows @ [Balsamiq](https://drive.google.com/file/d/14DPjYT-WpjN2JeTZloeKtNOUVTSn68ZI/view?usp=sharing)
+
 ## Schema
+
+ER Diagram @ [dbdiagram](https://dbdiagram.io/d/638e3b7cbae3ed7c4544e0d0)
+
 ### Entities:
-`User` (user_id, name, bio, age, email, password)
-`Post` (user_id, restaurant_id, group_id, content, rating, picture)
-`Comment` (post_id, user_id, comment)
-`Like` (like_id, user_id, post_id)
-`Restaurant` (restaurant_id, name, website, hours, location, price_range)
-`Group` (group_id, name, description, members_count, admin)
-### Relations:
-- One-to-Many
-`user_posts`: User(user_id) → Post(user_id)
-`user_comment`: User(user_id) → Comment(user_id)
-`post_comments`: Post(post_id) → Comment(post_id)
-`user_likes`: User(user_id) → Like(user_id)
-`post_likes`: Post(post_id) → Like(post_id)
-`restaurant_posts`: Restaurant(restaurant_id) → Post(restaurant_id)
-`group_posts`: Group(group_id) → Post(group_id)
-- Many-to-Many
-`user_in_groups`: User(user_id) → Group(user_id)
-`user_follows_restaurants`: User(user_id) → Restaurant(restaurant_id)
+
+`User` (id, name, email, password_digest, remember_digest, admin)
+
+`Restaurant` (id, name, description)
+
+`Relationship` (id, follower_id, followed_id)
+
+`RestaurantRelationship` (id, restaurant_follower_id, restaurant_followed_id)
+
+`Micropost` (id, user_id, restaurant_id, content, rating)
+
+`Like` (id, liker_id, liked_id)
+
+
+
+
 ## Run Locally
 Make sure Ruby is installed on your system. Fire command prompt and run command:
 ```bash
