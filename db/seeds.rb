@@ -25,7 +25,8 @@ end
 # Generate a bunch of Restaurants
 (1..26).each do |i|
   name = Faker::Restaurant.unique.name
-  description = Faker::Restaurant.description
+  full_address = Faker::Address.full_address
+  description = full_address[full_address.index(',') + 2..]
   new_restaurant = Restaurant.create!(name: name,
                                       description: description[0...220])
   new_restaurant.image.attach(

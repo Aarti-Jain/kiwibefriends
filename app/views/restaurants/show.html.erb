@@ -2,19 +2,23 @@
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
-      <h1>
-        <%= gravatar_for_restaurant @restaurant %>
-        <%= @restaurant.name %>
-      </h1>
-    </section>
-    <section class="stats">
-      <%= render 'shared/restaurant_stats' %>
+      <%= gravatar_for_restaurant @restaurant %>
+      <h1><%= @restaurant.name %></h1>
+      <span>
+        <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+        <%= @restaurant.description %>
+      </span>
+      <span><%= link_to "view profile", @restaurant %></span>
+      <section class="stats">
+        <%= render 'shared/restaurant_stats' %>
+      </section>
+      <div>
+        <%= render 'follow_form' if logged_in? %>
+      </div>
     </section>
   </aside>
   <div class="col-md-8">
-  <%= render 'follow_form' if logged_in? %>
   <% if @restaurant.microposts.any? %>
-    <h3>Microposts (<%= @restaurant.microposts.count %>)</h3>
     <ol class="microposts">
       <%= render @microposts %>
     </ol>

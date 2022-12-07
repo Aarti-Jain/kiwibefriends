@@ -1,7 +1,7 @@
 module RestaurantsHelper
 
   # Returns the Gravatar for the given restaurant.
-  def gravatar_for_restaurant(restaurant, options = { size: 80 })
+  def gravatar_for_restaurant(restaurant, options = { size: 50 })
     size = options[:size]
     if restaurant.image.attached?
       image_tag(restaurant.image, alt: restaurant.name, class: "gravatar", size: size)
