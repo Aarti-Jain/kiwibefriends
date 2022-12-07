@@ -2,27 +2,29 @@
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
-      <%= gravatar_for @user %>
+      <%= link_to gravatar_for(@user, size: 50), current_user %>
       <h1><%= @user.name %></h1>
       <span><%= link_to "view my profile", @user %></span>
-      <span><strong>Microposts:</strong> <%= @user.microposts.count %></span>
+      <span><%= pluralize(@user.microposts.count, "micropost") %></span>
+      <section class="stats">
+        <%= render 'shared/stats' %>
+      </section>
     </section>
-    <section class="stats">
-      <%= render 'shared/stats' %>
-      <% if !@users.nil? && @users.any? %>
-        <div class="user_avatars">
-          <% @users.each do |user| %>
-            <%= link_to gravatar_for(user, size: 30), user %>
-          <% end %>
-        </div>
-      <% elsif !@restaurants.nil? && @restaurants.any? %>
-        <div class="user_avatars">
-          <% @restaurants.each do |restaurant| %>
-            <%= link_to gravatar_for_restaurant(restaurant, size: 30), restaurant %>
-          <% end %>
-        </div>
-      <% end %>
-    </section>
+    <section class='stats'>
+    <% if !@users.nil? && @users.any? %>
+      <div class="user_avatars">
+        <% @users.each do |user| %>
+          <%= link_to gravatar_for(user, size: 30), user %>
+        <% end %>
+      </div>
+    <% elsif !@restaurants.nil? && @restaurants.any? %>
+      <div class="user_avatars">
+        <% @restaurants.each do |restaurant| %>
+          <%= link_to gravatar_for_restaurant(restaurant, size: 30), restaurant %>
+        <% end %>
+      </div>
+    <% end %>
+  </section>
   </aside>
   <div class="col-md-8">
     <h3><%= @title %></h3>
