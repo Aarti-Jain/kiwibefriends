@@ -422,3 +422,33 @@ span.image {
     margin: 5px;
   }
 }
+
+/* Leaderboard */
+
+.leaderboard-aside {
+  margin-top: 10px;
+  background: white;
+  border: 2px solid #f2f2f5;
+  border-radius: 12px;
+  padding: 5px;
+}
+
+.leaderboad-list {
+  margin-top: 10px;
+  background: white;
+  border: 2px solid #f2f2f5;
+  border-radius: 12px;
+  padding: 5px;
+}
+
+.top-three {
+  margin-top: 10px;
+  background: white;
+  border: 2px solid #f2f2f5;
+  border-radius: 12px;
+  padding: 5px;
+  p {
+    text-align: center;
+    font-size: 1.5em;
+  }
+}
