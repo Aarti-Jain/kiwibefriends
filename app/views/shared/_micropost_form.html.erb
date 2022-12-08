@@ -1,4 +1,4 @@
-<p>What's on your mind?</p>
+<p>What's on your mind, <%= current_user.name %>?</p>
 <hr>
 <%= form_with(model: @micropost) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>

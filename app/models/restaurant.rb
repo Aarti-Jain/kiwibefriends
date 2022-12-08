@@ -28,4 +28,13 @@ class Restaurant < ApplicationRecord
       average.round(1)
     end
   end
+
+  def self.leaderboard(chosen_filter)
+    Restaurant.joins(:microposts)
+              .where('microposts.created_at >= ?', chosen_filter)
+              .select('restaurants.id,
+                      avg(microposts.rating) as avg_rating')
+              .group('restaurants.id')
+              .order('avg_rating desc')
+  end
 end

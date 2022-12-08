@@ -71,12 +71,7 @@ class RestaurantsController < ApplicationController
     if params[:query].present?
       chosen_filter = filter_hash[params[:query][:sort_by]]
     end
-    @restaurants = Restaurant.joins(:microposts)
-                             .where('microposts.created_at >= ?', chosen_filter)
-                             .select('restaurants.id,
-                                     avg(microposts.rating) as avg_rating')
-                             .group('restaurants.id')
-                             .order('avg_rating desc')
+    @restaurants = Restaurant.leaderboard(chosen_filter)
                              .paginate(page: params[:page])
   end
 
