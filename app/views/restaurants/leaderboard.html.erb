@@ -36,10 +36,12 @@
           <tr>
             <th scope="row"><%= i %></th>
             <td>
-              <%= gravatar_for_restaurant restaurant, size: 50 %>
-              <%= link_to restaurant.name, restaurant %>
+              <%= render restaurant %>
             </td>
-            <td><%= restaurant.average_rating %></td>
+            <td>
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+              <%= restaurant.average_rating %>
+            </td>
             <td><%= restaurant.restaurant_followers.count %></td>
             <% i += 1 %>
           </tr>
