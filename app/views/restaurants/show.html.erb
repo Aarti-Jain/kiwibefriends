@@ -1,14 +1,8 @@
 <% provide(:title, @restaurant.name) %>
 <div class="row">
   <aside class="col-md-4">
-    <section class="user_info">
-      <%= gravatar_for_restaurant @restaurant %>
-      <h1><%= @restaurant.name %></h1>
-      <span>
-        <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
-        <%= @restaurant.description %>
-      </span>
-      <span><%= link_to "view profile", @restaurant %></span>
+    <section class='restaurant-profile-aside'>
+      <%= render @restaurant %>
       <section class="stats">
         <%= render 'shared/restaurant_stats' %>
       </section>
