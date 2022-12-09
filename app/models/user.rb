@@ -146,4 +146,8 @@ class User < ApplicationRecord
   def liking?(other_micropost)
     liking.include?(other_micropost)
   end
+
+  def users_you_may_know
+    
+  end
 end

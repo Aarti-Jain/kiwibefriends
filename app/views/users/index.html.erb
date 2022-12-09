@@ -8,29 +8,32 @@
       </section>
     </section>
     <section class="top-three">
+      <p>People You May Know</p>
+      <hr>
       <ul class="users">
         <%= render @users[0..2] %>
       </ul>
     </section>
     <section class="top-three">
+      <p>People With Same Taste</p>
+      <hr>
       <ul class="users">
         <%= render @users[0..2] %>
       </ul>
     </section>
   </aside>
   <div class="col-md-8">
-  <%= form_with(url: users_path, method: "GET") do |form| %>
-    <%= form.label :query, "Search by name:" %>
-    <%= form.text_field :query %>
-    <%= form.submit 'Search', name: nil %>
-  <% end %>
-
+    <section class="search-bar">
+      <%= form_with(url: users_path, method: "GET") do |form| %>
+        <%= form.label :query, "Search by name:" %>
+        <%= form.text_field :query %>
+        <%= form.submit 'Search', name: nil %>
+      <% end %>
+    </section>
   <%= will_paginate %>
-
   <ul class="users">
     <%= render @users %>
   </ul>
-
   <%= will_paginate %>
   </div>
 </div>

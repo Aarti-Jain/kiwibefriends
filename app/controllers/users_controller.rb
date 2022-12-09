@@ -11,6 +11,8 @@ class UsersController < ApplicationController
     else
       @users = User.paginate(page: params[:page])
     end
+    @users_you_may_know = @user.users_you_may_know
+    @users_with_same_taste = @user.users_with_same_taste
   end
 
   def show
