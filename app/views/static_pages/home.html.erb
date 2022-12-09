@@ -9,13 +9,11 @@
     <section class="micropost_form">
       <%= render 'shared/micropost_form' %>
     </section>
-    <section class="mini_leaderboard_aside">
+    <section class="mini_leaderboard_aside restaurants">
       <%= render 'shared/mini_leaderboard' %>
     </section>
   </aside>
   <div class="col-md-8">
-    <% if @no_posts %>
-    <% end %>
     <%= render 'shared/feed' %>
   </div>
 </div>

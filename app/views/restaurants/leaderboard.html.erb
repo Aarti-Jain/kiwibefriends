@@ -12,26 +12,10 @@
         <%= form.submit 'Search', class: "btn btn-primary btn-sm" %>
       <% end %>
     </div>
-    
-    <div class="top-three">
-      <p>Top 3 Must Go!</p>
-      <% count = 0 %>
-      <% @restaurants.each do |rest| %>
-        <% restaurant = Restaurant.find_by id: rest.id %>  
-        <section class="user_info">
-          <%= gravatar_for_restaurant restaurant %>
-          <h1><%= restaurant.name %></h1>
-          <span>
-            <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
-            <%= restaurant.description %>
-          </span>
-          <span><%= link_to "view profile", restaurant %></span>
-        </section>
-        <% count += 1 %>
-        <% if count == 3 %>
-          <% break %>
-        <% end %>
-      <% end %>
+    <div class="top-three restaurants">
+      <p>Must Go!</p>
+      <hr>
+      <%= render @restaurants[0..2].map {|rest| Restaurant.find_by id: rest.id} %>
     </div>
   </aside>
   <div class="col-md-8">
@@ -48,20 +32,15 @@
           </tr>
         </thead>
         <tbody>
-          <% @restaurants.each do |rest| %>
-          <% restaurant = Restaurant.find_by id: rest.id %>
+          <% @restaurants.map { |rest| Restaurant.find_by id: rest.id}.each do |restaurant| %>
           <tr>
             <th scope="row"><%= i %></th>
             <td>
               <%= gravatar_for_restaurant restaurant, size: 50 %>
               <%= link_to restaurant.name, restaurant %>
             </td>
-            <td>
-              <%= restaurant.average_rating %>
-            </td>
-            <td>
-              <%= restaurant.restaurant_followers.count %>
-            </td>
+            <td><%= restaurant.average_rating %></td>
+            <td><%= restaurant.restaurant_followers.count %></td>
             <% i += 1 %>
           </tr>
           <% end %>

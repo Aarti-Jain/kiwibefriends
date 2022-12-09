@@ -1,7 +1,15 @@
 <li>
-  <%= gravatar_for_restaurant restaurant, size: 50 %>
-  <%= link_to restaurant.name, restaurant %>
-  <h6>Rating: <%= restaurant.average_rating %></h6>
+  <section class="restaurant-info">
+    <%= gravatar_for_restaurant restaurant %>
+    <h1><%= restaurant.name %></h1>
+    <span>
+      <span class="glyphicon glyphicon-map-marker symbol" aria-hidden="true"></span>
+      <%= restaurant.description %>
+    </span>
+    <span>
+      <%= link_to "view profile", restaurant %>
+    </span>
+  </section>
   <% if current_user.admin? %>
     | <%= link_to "delete", restaurant, data: { "turbo-method": :delete,
                                           turbo_confirm: "You sure?" } %>

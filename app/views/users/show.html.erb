@@ -2,10 +2,7 @@
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
-      <%= link_to gravatar_for(@user, size: 50), current_user %>
-      <h1><%= @user.name %></h1>
-      <span><%= link_to "view my profile", @user %></span>
-      <span><%= pluralize(@user.microposts.count, "reviews") %></span>
+      <%= render 'shared/user_info' %>
       <section class="stats">
         <%= render 'shared/stats' %>
       </section>

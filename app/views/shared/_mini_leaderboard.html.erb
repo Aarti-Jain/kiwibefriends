@@ -1,15 +1,5 @@
 <p>Popular Restaurants</p>
 <hr>
-<% Restaurant.leaderboard(Date.today.at_beginning_of_year).first(5).each do |rest| %>
-  <% restaurant = Restaurant.find_by id: rest.id %>
-  <div>
-    <%= gravatar_for_restaurant(restaurant, size: 25) %>
-    <h1>
-      <%= link_to restaurant.name, restaurant %>
-      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-      <%= restaurant.average_rating %>
-    </h1>
-    <hr>
-  </div>
-<% end %>
+<%= render Restaurant.leaderboard(Date.today.at_beginning_of_year)[0...4]
+                     .map { |rest| Restaurant.find_by id: rest.id } %>
 <a class="btn btn-primary btn-block" href="/leaderboard" role="button">Learn More</a>
