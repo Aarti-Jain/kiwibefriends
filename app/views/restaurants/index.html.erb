@@ -1,16 +1,37 @@
 <% provide(:title, 'All Restaurants') %>
-<h1>All Restaurants</h1>
-
-<%= form_with(url: restaurants_path, method: "GET") do |form| %>
-  <%= form.label :query, "Search by name:" %>
-  <%= form.text_field :query %>
-  <%= form.submit 'Search', name: nil %>
-<% end %>
-
-<%= will_paginate %>
-
-<ul class="users">
-  <%= render @restaurants %>
-</ul>
-
-<%= will_paginate %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <%= render 'shared/user_info' %>
+      <section class="stats">
+        <%= render 'shared/stats' %>
+      </section>
+    </section>
+    <section class="top-three">
+      <p>Restaurants You Might Like</p>
+      <hr>
+      <ul class="restaurants">
+        <%= render @restaurants[0..2] %>
+      </ul>
+    </section>
+    <section class="top-three">
+      <ul class="restaurants">
+        <%= render 'shared/mini_leaderboard' %>
+      </ul>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <section class="search-bar">
+      <%= form_with(url: restaurants_path, method: "GET") do |form| %>
+        <%= form.label :query, "Search by name:" %>
+        <%= form.text_field :query %>
+        <%= form.submit 'Search', name: nil %>
+      <% end %>
+    </section>
+    <%= will_paginate %>
+    <ul class="restaurants restaurants-in-search">
+      <%= render @restaurants %>
+    </ul>
+    <%= will_paginate %>
+  </div>
+</div>

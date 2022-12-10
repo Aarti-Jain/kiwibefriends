@@ -380,25 +380,6 @@ span.image {
   margin-top: 5px;
 }
 
-/* Mini Leaderboard */
-.mini_leaderboard_aside {
-  border: 2px solid #f2f2f5;
-  border-radius: 12px;
-  background-color: white;
-  padding: 15px;
-  hr {
-    margin-top: 1px;
-    margin-bottom: 1px;
-  }
-  p {
-    font-size: 1.2em;
-    text-align: center;
-  }
-  a {
-    margin-top: 10px;
-  }
-}
-
 /* Leaderboard */
 
 .leaderboard-aside {
@@ -442,6 +423,9 @@ span.image {
     text-align: center;
     margin: 0px;
   }
+  a {
+    margin-top: 10px;
+  }
 }
 
 /* Restaurant Info */
@@ -472,7 +456,8 @@ span.image {
 
 /* Restaurants index */
 .restaurants {
-  margin-top: 10px;
+  padding-inline-start: 0;
+  margin: 0;
   list-style: none;
   li {
     overflow: auto;
@@ -498,4 +483,15 @@ span.image {
   background: white;
   border: 2px solid #f2f2f5;
   border-radius: 12px;
+}
+
+
+
+.restaurants-in-search {
+  .restaurant-info {
+    background: white;
+    border: 2px solid #f2f2f5;
+    border-radius: 12px;
+    padding: 5px;
+  }
 }
