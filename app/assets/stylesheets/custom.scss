@@ -40,14 +40,12 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 3em;
-  letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
 }
 
 h2 {
   font-size: 1.2em;
-  letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
@@ -68,7 +66,6 @@ p {
   font-size: 1.7em;
   color: white;
   text-transform: uppercase;
-  letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
   &:hover {
@@ -114,40 +111,25 @@ footer {
 
 /* sidebar */
 
-aside {
-  section.user_info {
-    margin-top: 10px;
-    background: white;
-    border: 2px solid #f2f2f5;
-    border-radius: 12px;
-    padding: 5px;
-  }
+.user_info {
+  background: white;
+  border: 2px solid #f2f2f5;
+  border-radius: 12px;
+  padding: 5px;
   .gravatar {
     float: left;
-    margin-right: 10px;
-    margin-top: 5px;
-    margin-left: 5px;
     border-radius: 50%;
   }
-  section {
-    padding: 10px 0;
-    margin-top: 20px;
-    &:first-child {
-      border: 0;
-      padding-top: 0;
-    }
-    span {
-      display: block;
-      margin-bottom: 3px;
-      line-height: 1;
-    }
-    h1 {
-      font-size: 1.4em;
-      text-align: left;
-      letter-spacing: -1px;
-      margin-bottom: 3px;
-      margin-top: 0px;
-    }
+  h1 {
+    font-size: 1.4em;
+    margin-right: 10px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    margin-left: 1px;
+    text-align: left;
+  }
+  span {
+    display: block;
   }
 }
 
@@ -171,8 +153,8 @@ aside {
     text-align: center;
   }
   a {
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
     text-align: center;
     display:inline-block;  
     color: gray;
@@ -206,7 +188,7 @@ aside {
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   @include box_sizing;
 }
 
@@ -270,9 +252,9 @@ input {
 .users {
   list-style: none;
   margin: 0;
+  padding-inline-start: 0;
   li {
     overflow: auto;
-    padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
   }
 }
@@ -305,6 +287,7 @@ input {
 /* microposts */
 
 .microposts {
+  margin-top: 10px;
   list-style: none;
   padding: 0;
   li {
@@ -359,9 +342,13 @@ input {
 }
 
 aside {
+  list-style: none;
   textarea {
     height: 100px;
     margin-bottom: 5px;
+  }
+  section {
+    margin-top: 10px;
   }
 }
 
@@ -386,4 +373,125 @@ span.image {
   border-radius: 12px;
   background-color: white;
   padding: 15px;
+}
+
+/* Follow Form */
+#follow_form {
+  margin-top: 5px;
+}
+
+/* Leaderboard */
+
+.leaderboard-aside {
+  margin-top: 10px;
+  background: white;
+  border: 2px solid #f2f2f5;
+  border-radius: 12px;
+  padding: 5px;
+}
+
+.leaderboad-list {
+  margin-top: 10px;
+  background: white;
+  border: 2px solid #f2f2f5;
+  border-radius: 12px;
+  padding: 5px;
+  li {
+    list-style: none;
+  }
+}
+
+.top-three {
+  .users {
+    .user_info {
+      border: 0;
+      border-radius: 0;
+    }
+  }
+  padding: 5px;
+  margin: 0px;
+  margin-top: 10px;
+  background: white;
+  border: 2px solid #f2f2f5;
+  border-radius: 12px;
+  hr {
+    margin-top: 0px;
+    margin-bottom: 1px;
+  }
+  p {
+    font-size: 1.2em;
+    text-align: center;
+    margin: 0px;
+  }
+  a {
+    margin-top: 10px;
+  }
+}
+
+/* Restaurant Info */
+
+.restaurant-info {
+  span.symbol {
+    display: inline;
+  }
+  span {
+    display: block;
+    margin-bottom: 3px;
+    line-height: 1;
+  }
+  h1 {
+    font-size: 1.4em;
+    text-align: left;
+    margin-bottom: 3px;
+    margin-top: 0px;
+  }
+  .gravatar {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-left: 5px;
+    border-radius: 50%;
+  }
+}
+
+/* Restaurants index */
+.restaurants {
+  padding-inline-start: 0;
+  margin: 0;
+  list-style: none;
+  li {
+    overflow: auto;
+    border-bottom: 1px solid $gray-lighter;
+  }
+}
+
+/* Restaurant Profile */
+.restaurant-profile-aside {
+  margin-top: 10px;
+  background: white;
+  border: 2px solid #f2f2f5;
+  border-radius: 12px;
+  padding: 5px;
+}
+
+/* Search Bar */
+
+.search-bar {
+  padding: 5px;
+  margin: 0px;
+  margin-top: 10px;
+  background: white;
+  border: 2px solid #f2f2f5;
+  border-radius: 12px;
+}
+
+/* search for restaurants */
+
+.restaurants-in-search {
+  .restaurant-info {
+    background: white;
+    border: 2px solid #f2f2f5;
+    border-radius: 12px;
+    padding: 5px;
+  }
 }

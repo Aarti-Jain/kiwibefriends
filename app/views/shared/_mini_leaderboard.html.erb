@@ -1,0 +1,5 @@
+<p>Popular Restaurants</p>
+<hr>
+<%= render Restaurant.leaderboard(Date.today.at_beginning_of_year)[0...4]
+                     .map { |rest| Restaurant.find_by id: rest.id } %>
+<a class="btn btn-primary btn-block" href="/leaderboard" role="button">Learn More</a>

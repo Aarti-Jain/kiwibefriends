@@ -1,9 +1,12 @@
 <li>
-  <%= gravatar_for user, size: 50 %>
-  <%= link_to user.name, user %>
-  <h6>Followers: <%= user.followers.count %></h6>
-  <% if current_user.admin? && !current_user?(user) %>
-    | <%= link_to "delete", user, data: { "turbo-method": :delete,
-                                          turbo_confirm: "You sure?" } %>
-  <% end %>
+  <section class="user_info">
+    <%= gravatar_for user, size: 50 %>
+    <h1><%= link_to user.name, user %></h1>
+    <span><%= link_to "view profile", user %></span>
+    <span><%= pluralize(user.followers.count, "follower") %></span>
+    <% if current_user.admin? && !current_user?(user) %>
+      | <%= link_to "delete", user, data: { "turbo-method": :delete,
+                                            turbo_confirm: "You sure?" } %>
+    <% end %>
+  </section>
 </li>

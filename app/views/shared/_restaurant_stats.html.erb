@@ -1,13 +1,18 @@
-<% @restaurant %>
-<div class="stats">
-  <a href="<%= restaurant_followers_restaurant_path(@restaurant) %>">
-    <strong id="restaurant_followers" class="stat">
-      <%= @restaurant.restaurant_followers.count %>
-    </strong>
-    followers
-  </a>
+<a href="<%= restaurant_followers_restaurant_path(@restaurant) %>">
   <strong id="restaurant_followers" class="stat">
-    <%= @restaurant.average_rating %>
+    <%= @restaurant.restaurant_followers.count %>
   </strong>
-  Rating
-</div>
+  followers
+</a>
+<a>
+  <strong id="restaurant_rating" class="stat">
+    <%= @restaurant.average_rating %>/5
+  </strong>
+  rating
+</a>
+<a>
+  <strong id="restaurant_reviews" class="stat">
+    <%= @restaurant.microposts.count %>
+  </strong>
+  reviews
+</a>

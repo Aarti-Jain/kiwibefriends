@@ -147,4 +147,62 @@ class UserTest < ActiveSupport::TestCase
     user1.unlike(post1)
     assert_not user1.liking?(post1)
   end
+
+  test "people you may know does not include you" do
+    user1 = users(:new_user_1)
+    user2 = users(:new_user_2)
+    user1.follow(user2)
+    assert_not user1.users_you_may_know.include?(user1)
+  end
+
+  test "people you may know should includes the right people" do
+    user1 = users(:new_user_1)
+    user2 = users(:new_user_2)
+    user3 = users(:new_user_3)
+    user1.follow(user2)
+    user2.follow(user3)
+    assert user1.users_you_may_know.include?(user3)
+  end
+
+  test "people with the same taste includes the right people" do
+    user1 = users(:new_user_1)
+    user2 = users(:new_user_2)
+    user3 = users(:new_user_3)
+    restaurant1 = restaurants(:one)
+    restaurant2 = restaurants(:two)
+    user1.restaurant_follow(restaurant1)
+    user1.restaurant_follow(restaurant2)
+    user2.restaurant_follow(restaurant1)
+    user3.restaurant_follow(restaurant2)
+    assert user1.users_with_same_taste.include?(user2)
+    assert user1.users_with_same_taste.include?(user3)
+    assert_not user1.users_with_same_taste.include?(user1)
+  end
+
+  test "restaurants you might like works properly" do
+    # user1 having the same taste as user2 and user3
+    user1 = users(:new_user_1)
+    user2 = users(:new_user_2)
+    user3 = users(:new_user_3)
+    restaurant1 = restaurants(:one)
+    restaurant2 = restaurants(:two)
+    user1.restaurant_follow(restaurant1)
+    user1.restaurant_follow(restaurant2)
+    user2.restaurant_follow(restaurant1)
+    user3.restaurant_follow(restaurant2)
+
+    # user2 and user3 follow more restaurants
+    restaurant3 = restaurants(:restaurant_3)
+    restaurant4 = restaurants(:restaurant_4)
+    restaurant5 = restaurants(:restaurant_5)
+    user2.restaurant_follow(restaurant3)
+    user2.restaurant_follow(restaurant4)
+    user3.restaurant_follow(restaurant4)
+    user3.restaurant_follow(restaurant5)
+
+    # user1 might like restaurant3, 4, and 5
+    assert user1.restaurants_you_might_like.include?(restaurant3)
+    assert user1.restaurants_you_might_like.include?(restaurant4)
+    assert user1.restaurants_you_might_like.include?(restaurant5)
+  end
 end
