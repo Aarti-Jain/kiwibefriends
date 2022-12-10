@@ -179,4 +179,25 @@ class User < ApplicationRecord
     "
     User.where("id IN (#{people_with_same_taste})", id: id)
   end
+
+  def restaurants_you_might_like
+    restaurant_ids = "
+    SELECT restaurant_followed_id
+    FROM restaurant_relationships
+    WHERE restaurant_follower_id IN (
+      SELECT followers.restaurant_follower_id
+      FROM
+        (SELECT rr.restaurant_follower_id
+        FROM Users u
+              INNER JOIN restaurant_relationships r on r.restaurant_follower_id = u.id
+              INNER JOIN restaurant_relationships rr on rr.restaurant_followed_id = r.restaurant_followed_id
+        WHERE u.id = :id AND rr.restaurant_follower_id != u.id) followers
+      GROUP BY followers.restaurant_follower_id
+      ORDER BY COUNT(*) DESC
+    )
+    GROUP BY restaurant_followed_id
+    ORDER BY COUNT(*) DESC
+    "
+    Restaurant.where("id IN (#{restaurant_ids})", id: id)
+  end
 end

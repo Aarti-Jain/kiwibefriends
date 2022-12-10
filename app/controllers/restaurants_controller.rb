@@ -11,6 +11,7 @@ class RestaurantsController < ApplicationController
     else
       @restaurants = Restaurant.paginate(page: params[:page])
     end
+    @restaurants_you_might_like = current_user.restaurants_you_might_like
   end
 
   def show

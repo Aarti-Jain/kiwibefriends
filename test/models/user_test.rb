@@ -178,4 +178,31 @@ class UserTest < ActiveSupport::TestCase
     assert user1.users_with_same_taste.include?(user3)
     assert_not user1.users_with_same_taste.include?(user1)
   end
+
+  test "restaurants you might like works properly" do
+    # user1 having the same taste as user2 and user3
+    user1 = users(:new_user_1)
+    user2 = users(:new_user_2)
+    user3 = users(:new_user_3)
+    restaurant1 = restaurants(:one)
+    restaurant2 = restaurants(:two)
+    user1.restaurant_follow(restaurant1)
+    user1.restaurant_follow(restaurant2)
+    user2.restaurant_follow(restaurant1)
+    user3.restaurant_follow(restaurant2)
+
+    # user2 and user3 follow more restaurants
+    restaurant3 = restaurants(:restaurant_3)
+    restaurant4 = restaurants(:restaurant_4)
+    restaurant5 = restaurants(:restaurant_5)
+    user2.restaurant_follow(restaurant3)
+    user2.restaurant_follow(restaurant4)
+    user3.restaurant_follow(restaurant4)
+    user3.restaurant_follow(restaurant5)
+
+    # user1 might like restaurant3, 4, and 5
+    assert user1.restaurants_you_might_like.include?(restaurant3)
+    assert user1.restaurants_you_might_like.include?(restaurant4)
+    assert user1.restaurants_you_might_like.include?(restaurant5)
+  end
 end
