@@ -21,17 +21,8 @@
     </section>
   </aside>
   <div class="col-md-8">
-    <section class="search-bar">
-      <%= form_with(url: restaurants_path, method: "GET") do |form| %>
-        <%= form.label :query, "Search by name:" %>
-        <%= form.text_field :query %>
-        <%= form.submit 'Search', name: nil %>
-      <% end %>
+    <section class="map-interactive">
+      <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=7&size=600x600&center=42.407211,-71.382439&key=#{Rails.application.credentials.google_maps_api_key}", alt: "Map" %>
     </section>
-    <%= will_paginate %>
-    <ul class="restaurants restaurants-in-search">
-      <%= render @restaurants %>
-    </ul>
-    <%= will_paginate %>
   </div>
 </div>
