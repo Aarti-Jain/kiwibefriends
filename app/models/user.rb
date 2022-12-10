@@ -148,6 +148,35 @@ class User < ApplicationRecord
   end
 
   def users_you_may_know
-    
+    people_you_may_know = "
+      SELECT mutual.followed_id
+      FROM
+            (SELECT rr.followed_id
+            FROM Users u
+            INNER JOIN Relationships r on r.follower_id = u.id
+            INNER JOIN Relationships rr on rr.follower_id = r.followed_id
+            WHERE u.id = :id AND rr.followed_id NOT IN
+                  (SELECT rrr.followed_id from Relationships rrr
+                  WHERE rrr.follower_id = u.id)
+      ) mutual
+      GROUP BY mutual.followed_id
+      ORDER BY COUNT(*) DESC
+    "
+    User.where("id IN (#{people_you_may_know})", id: id)
+  end
+
+  def users_with_same_taste
+    people_with_same_taste = "
+      SELECT followers.restaurant_follower_id
+      FROM
+        (SELECT rr.restaurant_follower_id
+        FROM Users u
+              INNER JOIN restaurant_relationships r on r.restaurant_follower_id = u.id
+              INNER JOIN restaurant_relationships rr on rr.restaurant_followed_id = r.restaurant_followed_id
+        WHERE u.id = :id AND rr.restaurant_follower_id != u.id) followers
+      GROUP BY followers.restaurant_follower_id
+      ORDER BY COUNT(*) DESC
+    "
+    User.where("id IN (#{people_with_same_taste})", id: id)
   end
 end

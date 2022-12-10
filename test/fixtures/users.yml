@@ -30,3 +30,18 @@ new_user:
   name: new
   email: new@example.com
   password_digest: <%= User.digest('password') %>
+
+new_user_1:
+  name: new
+  email: new1@example.com
+  password_digest: <%= User.digest('password') %> 
+
+new_user_2:
+  name: new
+  email: new2@example.com
+  password_digest: <%= User.digest('password') %> 
+
+new_user_3:
+  name: new
+  email: new3@example.com
+  password_digest: <%= User.digest('password') %> 
