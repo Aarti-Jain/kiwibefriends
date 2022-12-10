@@ -10,9 +10,11 @@
         <%= render 'follow_form' if logged_in? %>
       </div>
     </section>
-    <p>
-      <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=17&size=400x300&markers=size:large%7Ccolor:red%7C#{@restaurant.latitude},#{@restaurant.longitude}&key=#{Rails.application.credentials.google_maps_api_key}", alt: "Map" %>
-    </p>
+    <section class="top-three">
+      <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=17&size=345x300&markers=size:large%7Ccolor:red%7C#{@restaurant.latitude},#{@restaurant.longitude}&key=#{Rails.application.credentials.google_maps_api_key}", alt: "Map" %>
+      <hr>
+      <a class="btn btn-primary btn-block" href="/restaurants" role="button">Learn More</a>
+    </section>
   </aside>
   <div class="col-md-8">
   <% if @restaurant.microposts.any? %>
