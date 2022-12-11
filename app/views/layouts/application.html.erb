@@ -10,6 +10,8 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= render 'layouts/shim' %>
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.google_maps_api_key}" %>
+    <%= yield(:head_tags) %>
   </head>
   <body>
     <%= render 'layouts/header' %>

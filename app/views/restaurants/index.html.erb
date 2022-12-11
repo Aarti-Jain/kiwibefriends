@@ -21,6 +21,55 @@
     </section>
   </aside>
   <div class="col-md-8">
+    <section class="map-interactive">
+      <div id="map">
+        <% provide :head_tags do %>
+          <meta name='turbo-visit-control' content='reload'>
+          <script>
+            document.addEventListener("DOMContentLoaded", function(){
+              function initMap(lat, lng) {
+                var myCoords = new google.maps.LatLng(lat, lng);
+                var mapOptions = {
+                  center: myCoords,
+                  zoom: 10
+                };
+                var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+                var data = '<%= @restaurants.to_json %>';
+                var restaurantsAsArray = JSON.parse(data.replace(/&quot;/g,'"'));
+
+                // Loop over the array using a for loop
+                for (var i = 0; i < restaurantsAsArray.length; i++) {
+                  var restaurant = restaurantsAsArray[i];
+                  var position = new google.maps.LatLng(parseFloat(restaurant["latitude"]), 
+                                                        parseFloat(restaurant["longitude"]));
+                  var marker = new google.maps.Marker({
+                    position: position,
+                    map: map,
+                    title: restaurant["name"],
+                    animation: google.maps.Animation.BOUNCE,
+                    restaurant: restaurant
+                  });
+
+                  marker.addListener('click', function() {
+                    var infowindow = new google.maps.InfoWindow({
+                      content: `
+                        <div>
+                          <p>${this.title}</p>
+                          <a href='/restaurants/${this.restaurant["id"]}'>Reviews</a>
+                        </div>`
+                    });
+                    infowindow.open(map, this);
+                  });
+
+                }
+              }  
+              map = initMap(42.407211, -71.382439) // MA location
+            });
+          </script>
+        <% end %>
+      </div>
+    </section>
     <section class="search-bar">
       <%= form_with(url: restaurants_path, method: "GET") do |form| %>
         <%= form.label :query, "Search by name:" %>
