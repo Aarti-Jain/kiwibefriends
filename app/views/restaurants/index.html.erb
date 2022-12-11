@@ -46,8 +46,22 @@
                   var marker = new google.maps.Marker({
                     position: position,
                     map: map,
-                    title: restaurant["name"]
+                    title: restaurant["name"],
+                    animation: google.maps.Animation.DROP,
+                    restaurant: restaurant
                   });
+
+                  marker.addListener('click', function() {
+                    var infowindow = new google.maps.InfoWindow({
+                      content: `
+                        <div>
+                          <p>${this.title}</p>
+                          <a href='/restaurants/${this.restaurant["id"]}'>Reviews</a>
+                        </div>`
+                    });
+                    infowindow.open(map, this);
+                  });
+
                 }
               }  
               map = initMap(42.407211, -71.382439) // MA location
