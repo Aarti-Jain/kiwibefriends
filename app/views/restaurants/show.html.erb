@@ -15,33 +15,47 @@
       <% provide :head_tags do %>
         <meta name='turbo-visit-control' content='reload'>
         <script>
+          // convert ruby object to JSON then parse it 
           var data = '<%= [@restaurant].to_json %>';
           var restaurantAsArray = JSON.parse(data.replace(/&quot;/g,'"'));
           var restaurant = restaurantAsArray[0]
+
           document.addEventListener("DOMContentLoaded", function(){
             function initMap(lat, lng) {
               var myCoords = new google.maps.LatLng(lat, lng);
               var mapOptions = {center: myCoords, zoom: 10};
               var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-              var marker = new google.maps.Marker({
-                  position: myCoords,
-                  map: map,
-                  title: restaurant["name"],
-                  animation: google.maps.Animation.BOUNCE,
-              });
+              // check if browser supports the Goelocation API
+              origin = "Brandeis University"
+              if (navigator.geolocation) {
+                // If the Geolocation API is supported, get the user's current position
+                navigator.geolocation.getCurrentPosition(function(position) {
+                  // Create a new instance of the DirectionsService class
+                  var directionsService = new google.maps.DirectionsService();
 
-              marker.addListener('click', function() {
-                  var infowindow = new google.maps.InfoWindow({
-                    content: `
-                      <div>
-                        <p>${restaurant["name"]}</p>
-                        <a href='/restaurants/${restaurant["id"]}'>Reviews</a>
-                      </div>`
+                  // Create a request object that specifies the end location for the directions
+                  // Use the user's current position as the origin for the directions
+                  var request = {
+                    origin: {
+                      lat: position.coords.latitude,
+                      lng: position.coords.longitude,
+                    },
+                    destination: `${restaurant["name"]}`,
+                    travelMode: 'DRIVING'
+                  };
+
+                  directionsService.route(request, function(response, status) {
+                    if (status == 'OK') {
+                      // If the request was successful, draw the directions on the map
+                      var directionsRenderer = new google.maps.DirectionsRenderer();
+                      directionsRenderer.setMap(map);
+                      directionsRenderer.setDirections(response);
+                    }
                   });
-                  infowindow.open(map, this);
-              });
-            }  
+                })
+              }
+            } 
             map = initMap(parseFloat(restaurant["latitude"]), 
                           parseFloat(restaurant["longitude"]))
           });
