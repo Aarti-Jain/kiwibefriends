@@ -47,7 +47,7 @@
                     position: position,
                     map: map,
                     title: restaurant["name"],
-                    animation: google.maps.Animation.DROP,
+                    animation: google.maps.Animation.BOUNCE,
                     restaurant: restaurant
                   });
 
@@ -70,5 +70,17 @@
         <% end %>
       </div>
     </section>
+    <section class="search-bar">
+      <%= form_with(url: restaurants_path, method: "GET") do |form| %>
+        <%= form.label :query, "Search by name:" %>
+        <%= form.text_field :query %>
+        <%= form.submit 'Search', name: nil %>
+      <% end %>
+    </section>
+    <%= will_paginate %>
+    <ul class="restaurants restaurants-in-search">
+      <%= render @restaurants %>
+    </ul>
+    <%= will_paginate %>
   </div>
 </div>

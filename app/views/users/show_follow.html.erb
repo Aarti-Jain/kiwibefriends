@@ -34,7 +34,7 @@
       </ul>
       <%= will_paginate %>
     <% elsif !@restaurants.nil? && @restaurants.any? %>
-      <ul class="users follow">
+      <ul class="restaurants restaurants-in-search">
         <%= render @restaurants %>
       </ul>
       <%= will_paginate @restaurants %>
