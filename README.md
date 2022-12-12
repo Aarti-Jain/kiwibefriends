@@ -13,18 +13,23 @@ Available @ https://kiwi-be-friends-cosi166.herokuapp.com/
 ## Features
 - Secure Login/Sign up :ballot_box_with_check:
 - Home Feed with relevant reviews :ballot_box_with_check:
-- Like/Post Restaurant reviews :ballot_box_with_check:
-- Follow other Users/Restaurants :ballot_box_with_check:
+- Post a Review (rating/image/text) :ballot_box_with_check:
+- Like/Unlike a review :ballot_box_with_check:
+- Follow/Unfollow other Users/Restaurants :ballot_box_with_check:
 - Leaderboard of Restaurants by Rating :ballot_box_with_check:
 - Search Functioanlity for Users/Restaurants :ballot_box_with_check:
-- Real-Time Notification system
-- Contact Us form
+- Interactive Map of all Restaurants :ballot_box_with_check:
+- Directions to a Restaurant :ballot_box_with_check:
+- Recommendation Algo for People you may know :ballot_box_with_check:
+- Recommednation Algo for People with same taste :ballot_box_with_check:
+- Recommendation Algo for Restaurants you may like :ballot_box_with_check:
 
 
 ## Roadmap
 - Create/Join User groups
 - ML algorithim for relevant Posts
 - Mobile App 
+- Real-Time Notification system
 
 ## Routes
 
