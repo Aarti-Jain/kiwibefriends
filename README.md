@@ -98,9 +98,10 @@ Available @ https://kiwi-be-friends-cosi166.herokuapp.com/
 
 
 ## APIs
+- [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/overview)
 - [Google Maps Places API](https://developers.google.com/maps/documentation/places/web-service/overview)
-- [Google Maps Photos API](https://developers.google.com/maps/documentation/places/web-service/photos)
-- [Yelp Fusion API](https://docs.developer.yelp.com/docs/fusion-intro)
+- [Google Directions API](https://developers.google.com/maps/documentation/directions/overview)
+- [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
 
 
 ## Gems
@@ -133,8 +134,6 @@ ER Diagram @ [dbdiagram](https://dbdiagram.io/d/638e3b7cbae3ed7c4544e0d0)
 `Micropost` (id, user_id, restaurant_id, content, rating)
 
 `Like` (id, liker_id, liked_id)
-
-
 
 
 ## Run Locally
