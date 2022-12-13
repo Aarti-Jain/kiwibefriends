@@ -70,7 +70,7 @@ ER Diagram @ [dbdiagram](https://dbdiagram.io/d/638e3b7cbae3ed7c4544e0d0)
 
 - [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/overview): Interactive Map to find Restaurants
 
-- [Google Maps Places API](https://developers.google.com/maps/documentation/places/web-service/overview): Seed data with real Restaurant
+- [Google Places API](https://developers.google.com/maps/documentation/places/web-service/overview): Seed data with real Restaurant
 
 - [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API): Find the current location of a User
 
