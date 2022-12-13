@@ -14,7 +14,7 @@ Available @ https://kiwi-be-friends-cosi166.herokuapp.com/
 
 ## Purpose
 
-Looking for the best restaurants in town? Look no further than Kiwi Be Friends! Our app offers a range of features to help you discover and share the top spots in your area. From secure login and sign-up to a home feed with relevant reviews, and the ability to post your own reviews, you can easily share your food adventures with others. Plus, with our interactive map and directions, you can easily find and visit the restaurants you're interested in. And with recommendation algorithms that suggest users and restaurants based on your activity and tastes, you can easily find new recommendations and explore the culinary world. Download Kiwi Be Friends today and start your food journey!
+Looking for the best restaurants in town? Look no further than Kiwi Be Friends! Our app offers a range of features to help you discover and share the top spots in your area. From secure login and sign-up to a home feed with relevant reviews, and the ability to post your own reviews, you can easily share your food adventures with others. Plus, with our interactive map and directions, you can easily find and visit the restaurants you're interested in. And with recommendation algorithms that suggest users and restaurants based on your activity and tastes, you can easily find new recommendations and explore the culinary world. Visit Kiwi Be Friends today and start your food journey!
 
 ------
 
