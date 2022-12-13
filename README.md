@@ -124,7 +124,7 @@ ER Diagram @ [dbdiagram](https://dbdiagram.io/d/638e3b7cbae3ed7c4544e0d0)
 
 ### Architecture
 
-
+![Software Architecture](/app/assets/images/architecture.png "Application Architecture")
 
 ------
 
@@ -233,8 +233,7 @@ rails t
 ------
 
 ## Reflection
-
-![Alt text](/app/assets/images/architecture.png "Optional title")
+Overall, we are pleased with the product we developed over the course of the semester. However, during the development of our website, we encountered some challenges as well as had some wins. A main challenge for us was trying to find a time for everyone to meet, and setting a regular meeting schedule. Furthermore, as a team, we struggled with narrowing down our ideas into a fixed set of features that we all agreed to develop. We also had some challenges surrounding communication over slack and we weren’t consistent using Trello. Nevertheless, we all valued the experience gained from working on this product. We all learned new technologies and experimented with different tools, like integrating APIs into our app. In the end, we all enjoyed working with each other on this product.
 
 
 ------
